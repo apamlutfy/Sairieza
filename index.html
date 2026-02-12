@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You 💖</title>
+    <title>For Sairieaza 💖</title>
     <style>
         :root {
             --pink-bg: #ffdeeb;
@@ -24,7 +24,7 @@
         }
 
         .screen {
-            display: none; /* Hidden by default */
+            display: none;
             text-align: center;
             background: white;
             padding: 30px;
@@ -33,11 +33,15 @@
             width: 90%;
             max-width: 400px;
             animation: fadeIn 0.5s ease-in;
+            position: relative;
         }
 
         .active { display: block; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: scale(0.9); } 
+            to { opacity: 1; transform: scale(1); } 
+        }
 
         /* Buttons */
         .btn-container { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
@@ -61,37 +65,72 @@
         }
         .card {
             background: #fff0f5;
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
             border: 2px dashed var(--btn-pink);
             cursor: pointer;
+            font-size: 2rem;
+            transition: transform 0.2s;
         }
+        .card:hover { transform: scale(1.05); }
 
         /* Letter Style */
         .letter {
             font-style: italic;
             line-height: 1.6;
             text-align: left;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             background: #fff9fa;
-            padding: 15px;
+            padding: 20px;
             border-radius: 10px;
+            border-left: 5px solid var(--btn-pink);
         }
 
         input {
-            padding: 10px;
+            padding: 12px;
             border-radius: 10px;
             border: 1px solid #ccc;
             margin-bottom: 15px;
             width: 80%;
+            outline: none;
+            text-align: center;
+        }
+
+        /* Photo Popup Overlay */
+        #photoOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            animation: fadeIn 0.3s;
+        }
+        #popupImg {
+            max-width: 85%;
+            max-height: 70%;
+            border-radius: 15px;
+            border: 5px solid white;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
         }
     </style>
 </head>
 <body>
 
+    <div id="photoOverlay" onclick="this.style.display='none'">
+        <img id="popupImg" src="">
+        <p style="margin-top: 15px;">✨ Click anywhere to close ✨</p>
+    </div>
+
     <div id="screen1" class="screen active">
-        <h1>Hey there.</h1>
-        <p>Will you be my Valentine?</p>
+        <h1 style="font-size: 1.5rem;">Hey there.</h1>
+        <p style="font-size: 1.2rem;">Will you be my Valentine? 🌹</p>
         <div class="btn-container">
             <button class="primary" onclick="nextScreen(2)">YES PLEASE</button>
             <button id="noBtn" class="secondary" onmouseover="moveNo()">NO THANK YOU</button>
@@ -100,29 +139,30 @@
 
     <div id="screen2" class="screen">
         <h2>Your Rose Bouquet 💐</h2>
-        <div style="font-size: 4rem;">🌹🌹🌹</div>
+        <div style="font-size: 5rem; margin: 15px 0;">💐</div>
         <p>"Every moment with you is special."</p>
-        <button class="primary" onclick="nextScreen(3)">Next Surprise</button>
+        <button class="primary" onclick="nextScreen(3)">See Your Gifts</button>
     </div>
 
-<div class="grid">
-    <div class="card" onclick="showPhoto('https://raw.githubusercontent.com/YourUsername/YourRepo/main/your-photo.jpg')">📷</div>
-    <div class="card" onclick="nextScreen(4)">✉️</div>
-    <div class="card" onclick="alert('🎀 You are my favorite person!')">🎀</div>
-    <div class="card" onclick="alert('🍭 Something sweet for someone sweet')">🍭</div>
-</div>
-
-<div id="photoOverlay" onclick="this.style.display='none'" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center; flex-direction:column; color:white;">
-    <img id="popupImg" src="" style="max-width:80%; max-height:80%; border-radius:15px; border:5px solid white;">
-    <p>Click anywhere to close</p>
-</div>
+    <div id="screen3" class="screen">
+        <h3>I made these just for you...</h3>
+        <p>Tap a card to open your surprise ✨</p>
+        <div class="grid">
+            <div class="card" onclick="showPhoto('https://github.com/apamlutfy/Sairieza/blob/main/cutie%20jaja.jpg')">📷</div>
+            <div class="card" onclick="nextScreen(4)">✉️</div>
+            <div class="card" onclick="alert('🎀 You are my favorite person, Sairieaza!')">🎀</div>
+            <div class="card" onclick="alert('🍭 I owe you a sweet treat date!')">🍭</div>
+        </div>
+    </div>
 
     <div id="screen4" class="screen">
         <h3>Words from my heart ❤️</h3>
         <div class="letter">
-            "I don't say this enough, but you mean more to me than I could ever explain. Being with you feels like home..."
+            "I don't say this enough, but you mean more to me than I could ever explain. 
+            Being with you feels like home, even when we are far apart. 
+            Thank you for being you."
         </div>
-        <button class="primary" style="margin-top:15px" onclick="nextScreen(5)">One last thing...</button>
+        <button class="primary" style="margin-top:15px" onclick="nextScreen(5)">One last surprise...</button>
     </div>
 
     <div id="screen5" class="screen">
@@ -133,35 +173,42 @@
     </div>
 
     <div id="screen6" class="screen">
-        <h1>Happy Valentine's Day! ✨</h1>
-        <div style="font-size: 4rem;">💝</div>
-        <p>I love you more than words can say.</p>
+        <h1 style="font-size: 2.5rem;">Happy Valentine's Day! ✨</h1>
+        <div style="font-size: 5rem;">💖</div>
+        <p>I love you more than words can say, <b>Sairieaza</b>.</p>
+        <button class="secondary" onclick="location.reload()">Back to start</button>
     </div>
 
     <script>
         function nextScreen(screenNum) {
-            // Hide all screens
             document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            // Show the target screen
             document.getElementById('screen' + screenNum).classList.add('active');
         }
 
         function moveNo() {
             const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - 100);
-            const y = Math.random() * (window.innerHeight - 50);
-            btn.style.position = 'absolute';
+            // Randomly move button within safe margins
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 100);
+            btn.style.position = 'fixed'; // Fixed so it can move anywhere
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
         }
 
+        function showPhoto(url) {
+            const overlay = document.getElementById('photoOverlay');
+            const img = document.getElementById('popupImg');
+            img.src = url;
+            overlay.style.display = 'flex';
+        }
+
         function checkName() {
-            const name = document.getElementById('userName').value.toLowerCase();
-            // CHANGE "zara" TO YOUR PARTNER'S NAME
-            if (name === "sairieza" || name === "jaja") {
+            const name = document.getElementById('userName').value.toLowerCase().trim();
+            // This checks for the names you specified
+            if (name === "sairieza" || name === "jaja" || name === "zaza") {
                 nextScreen(6);
             } else {
-                alert("That's not the right name! Try again ❤️");
+                alert("That's not the right name! Try again, my love ❤️");
             }
         }
     </script>
