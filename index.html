@@ -1,131 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Be My Valentine 💝</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You 💖</title>
+    <style>
+        :root {
+            --pink-bg: #ffdeeb;
+            --dark-pink: #d63384;
+            --btn-pink: #ff4d6d;
+        }
 
-<style>
-body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Comic Sans MS', cursive;
-    overflow: hidden;
-}
+        body {
+            background-color: var(--pink-bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            color: var(--dark-pink);
+        }
 
-.card {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
+        .screen {
+            display: none; /* Hidden by default */
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 400px;
+            animation: fadeIn 0.5s ease-in;
+        }
 
-h1 {
-    color: #ff4d6d;
-}
+        .active { display: block; }
 
-.buttons {
-    margin-top: 25px;
-    position: relative;
-    height: 120px;
-}
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-button {
-    padding: 15px 30px;
-    font-size: 20px;
-    border: none;
-    border-radius: 40px;
-    cursor: pointer;
-    transition: 0.3s;
-}
+        /* Buttons */
+        .btn-container { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .primary { background: var(--btn-pink); color: white; }
+        .secondary { background: #eee; color: #555; }
 
-#yesBtn {
-    background: #ff4d6d;
-    color: white;
-}
+        /* Grid for Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .card {
+            background: #fff0f5;
+            padding: 20px;
+            border-radius: 15px;
+            border: 2px dashed var(--btn-pink);
+            cursor: pointer;
+        }
 
-#noBtn {
-    background: #ccc;
-    position: absolute;
-    left: 60%;
-    top: 0;
-}
+        /* Letter Style */
+        .letter {
+            font-style: italic;
+            line-height: 1.6;
+            text-align: left;
+            font-size: 0.9rem;
+            background: #fff9fa;
+            padding: 15px;
+            border-radius: 10px;
+        }
 
-.photo-box {
-    display: none;
-    margin-top: 20px;
-}
-
-.photo-box img {
-    width: 180px;
-    border-radius: 15px;
-    border: 4px solid #ff4d6d;
-}
-
-.emoji {
-    position: fixed;
-    font-size: 28px;
-    animation: fall 4s linear forwards;
-}
-
-@keyframes fall {
-    from { top: -40px; opacity: 1; }
-    to { top: 110vh; opacity: 0; }
-}
-</style>
+        input {
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            width: 80%;
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="card">
-    <h1>Will you be my Valentine? 🌹</h1>
-
-    <div class="buttons">
-        <button id="yesBtn">YES 💖</button>
-        <button id="noBtn">NO 🙈</button>
+    <div id="screen1" class="screen active">
+        <h1>Hey there.</h1>
+        <p>Will you be my Valentine?</p>
+        <div class="btn-container">
+            <button class="primary" onclick="nextScreen(2)">YES PLEASE</button>
+            <button id="noBtn" class="secondary" onmouseover="moveNo()">NO THANK YOU</button>
+        </div>
     </div>
 
-    <div class="photo-box" id="photoBox">
-        <h2>I knew it! 😍🍫</h2>
-        <img src="https://i.imgur.com/0y0y0y0.png" alt="Your Photo">
+    <div id="screen2" class="screen">
+        <h2>Your Rose Bouquet 💐</h2>
+        <div style="font-size: 4rem;">🌹🌹🌹</div>
+        <p>"Every moment with you is special."</p>
+        <button class="primary" onclick="nextScreen(3)">Next Surprise</button>
     </div>
-</div>
 
-<script>
-const noBtn = document.getElementById("noBtn");
-const yesBtn = document.getElementById("yesBtn");
-const photoBox = document.getElementById("photoBox");
+    <div id="screen3" class="screen">
+        <h3>I made these for you...</h3>
+        <p>Tap a card to open</p>
+        <div class="grid">
+            <div class="card" onclick="alert('📸 Moments I hold close: [Link your photos here]')">📷</div>
+            <div class="card" onclick="nextScreen(4)">✉️</div>
+            <div class="card" onclick="alert('🎀 You are my favorite person!')">🎀</div>
+            <div class="card" onclick="alert('🍭 Something sweet for someone sweet')">🍭</div>
+        </div>
+    </div>
 
-noBtn.addEventListener("mouseover", () => {
-    const x = Math.random() * 250 - 120;
-    const y = Math.random() * 120 - 60;
-    noBtn.style.transform = `translate(${x}px, ${y}px)`;
-});
+    <div id="screen4" class="screen">
+        <h3>Words from my heart ❤️</h3>
+        <div class="letter">
+            "I don't say this enough, but you mean more to me than I could ever explain. Being with you feels like home..."
+        </div>
+        <button class="primary" style="margin-top:15px" onclick="nextScreen(5)">One last thing...</button>
+    </div>
 
-yesBtn.addEventListener("click", () => {
-    yesBtn.style.transform = "scale(1.3)";
-    photoBox.style.display = "block";
-    startEmojiRain();
-});
+    <div id="screen5" class="screen">
+        <h3>One last surprise... 🔒</h3>
+        <p>Only your name can open this.</p>
+        <input type="text" id="userName" placeholder="Enter your name">
+        <button class="primary" onclick="checkName()">UNLOCK</button>
+    </div>
 
-function startEmojiRain() {
-    const emojis = ["🍫", "💖", "🍬", "😍", "❤️"];
-    for (let i = 0; i < 40; i++) {
-        const span = document.createElement("span");
-        span.className = "emoji";
-        span.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-        span.style.left = Math.random() * 100 + "vw";
-        span.style.animationDuration = (2 + Math.random() * 3) + "s";
-        document.body.appendChild(span);
+    <div id="screen6" class="screen">
+        <h1>Happy Valentine's Day! ✨</h1>
+        <div style="font-size: 4rem;">💝</div>
+        <p>I love you more than words can say.</p>
+    </div>
 
-        setTimeout(() => span.remove(), 5000);
-    }
-}
-</script>
+    <script>
+        function nextScreen(screenNum) {
+            // Hide all screens
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            // Show the target screen
+            document.getElementById('screen' + screenNum).classList.add('active');
+        }
 
+        function moveNo() {
+            const btn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
+            btn.style.position = 'absolute';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        function checkName() {
+            const name = document.getElementById('userName').value.toLowerCase();
+            // CHANGE "zara" TO YOUR PARTNER'S NAME
+            if (name === "zara" || name === "honey") {
+                nextScreen(6);
+            } else {
+                alert("That's not the right name! Try again ❤️");
+            }
+        }
+    </script>
 </body>
 </html>
