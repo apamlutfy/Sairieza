@@ -105,16 +105,17 @@
         <button class="primary" onclick="nextScreen(3)">Next Surprise</button>
     </div>
 
-    <div id="screen3" class="screen">
-        <h3>I made these for you...</h3>
-        <p>Tap a card to open</p>
-        <div class="grid">
-            <div class="card" onclick="alert('📸 Moments I hold close: https://github.com/apamlutfy/Sairieza/blob/main/cutie%20jaja.jpg')">📷</div>
-            <div class="card" onclick="nextScreen(4)">✉️</div>
-            <div class="card" onclick="alert('🎀 You are my favorite person!')">🎀</div>
-            <div class="card" onclick="alert('🍭 Something sweet for someone sweet')">🍭</div>
-        </div>
-    </div>
+<div class="grid">
+    <div class="card" onclick="showPhoto('https://raw.githubusercontent.com/YourUsername/YourRepo/main/your-photo.jpg')">📷</div>
+    <div class="card" onclick="nextScreen(4)">✉️</div>
+    <div class="card" onclick="alert('🎀 You are my favorite person!')">🎀</div>
+    <div class="card" onclick="alert('🍭 Something sweet for someone sweet')">🍭</div>
+</div>
+
+<div id="photoOverlay" onclick="this.style.display='none'" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center; flex-direction:column; color:white;">
+    <img id="popupImg" src="" style="max-width:80%; max-height:80%; border-radius:15px; border:5px solid white;">
+    <p>Click anywhere to close</p>
+</div>
 
     <div id="screen4" class="screen">
         <h3>Words from my heart ❤️</h3>
