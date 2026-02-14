@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Sairieza 💖</title>
+    <title>For Sairieza 💙</title>
     <style>
         :root {
-            --pink-bg: #ffdeeb;
-            --dark-pink: #d63384;
-            --btn-pink: #ff4d6d;
+            --blue-bg: #e0f2fe;
+            --dark-blue: #0369a1;
+            --btn-blue: #0ea5e9;
+            --accent-blue: #38bdf8;
         }
 
         body {
-            background-color: var(--pink-bg);
+            background-color: var(--blue-bg);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
@@ -20,7 +21,7 @@
             height: 100vh;
             margin: 0;
             overflow: hidden;
-            color: var(--dark-pink);
+            color: var(--dark-blue);
         }
 
         .screen {
@@ -33,7 +34,6 @@
             width: 90%;
             max-width: 400px;
             animation: fadeIn 0.5s ease-in;
-            position: relative;
         }
 
         .active { display: block; }
@@ -43,8 +43,6 @@
             to { opacity: 1; transform: scale(1); } 
         }
 
-        /* Buttons */
-        .btn-container { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
         button {
             padding: 12px 25px;
             border: none;
@@ -52,11 +50,22 @@
             cursor: pointer;
             font-weight: bold;
             transition: 0.3s;
+            margin: 10px;
         }
-        .primary { background: var(--btn-pink); color: white; }
-        .secondary { background: #eee; color: #555; }
+        .primary { background: var(--btn-blue); color: white; }
+        .secondary { background: #f1f5f9; color: #64748b; }
 
-        /* Grid for Cards */
+        .banquet-photo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+            border: 4px solid white;
+            box-shadow: 0 0 15px var(--accent-blue);
+            object-fit: cover;
+            display: block;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -64,64 +73,55 @@
             margin-top: 20px;
         }
         .card {
-            background: #fff0f5;
-            padding: 25px;
+            background: #f0f9ff;
+            padding: 20px;
             border-radius: 15px;
-            border: 2px dashed var(--btn-pink);
+            border: 2px dashed var(--accent-blue);
             cursor: pointer;
             font-size: 2rem;
-            transition: transform 0.2s;
         }
-        .card:hover { transform: scale(1.05); }
 
-        /* Letter Style */
         .letter {
             font-style: italic;
             line-height: 1.6;
             text-align: left;
             font-size: 0.95rem;
-            background: #fff9fa;
-            padding: 20px;
+            background: #f8fafc;
+            padding: 15px;
             border-radius: 10px;
-            border-left: 5px solid var(--btn-pink);
+            border-left: 5px solid var(--btn-blue);
         }
 
-        input {
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            margin-bottom: 15px;
-            width: 80%;
-            outline: none;
-            text-align: center;
-        }
-
-        /* Photo Popup Overlay */
         #photoOverlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             color: white;
-            animation: fadeIn 0.3s;
         }
-        #popupImg {
-            max-width: 85%;
-            max-height: 70%;
-            border-radius: 15px;
-            border: 5px solid white;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        #popupImg { max-width: 85%; max-height: 70%; border-radius: 15px; border: 5px solid white; }
+
+        .heart {
+            position: fixed;
+            font-size: 20px;
+            color: var(--btn-blue);
+            animation: moveHearts 3s linear forwards;
+            pointer-events: none;
+        }
+        @keyframes moveHearts {
+            to { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
+
+    <audio id="bgMusic" loop>
+        <source src="https://raw.githubusercontent.com/apamlutfy/Sairieza/main/Fav%20Song%20Jaja.mp3" type="audio/mpeg">
+    </audio>
 
     <div id="photoOverlay" onclick="this.style.display='none'">
         <img id="popupImg" src="">
@@ -129,87 +129,121 @@
     </div>
 
     <div id="screen1" class="screen active">
-        <h1 style="font-size: 1.5rem;">Hey there.</h1>
-        <p style="font-size: 1.2rem;">Will you be my Valentine? 🌹</p>
+        <p>HEYYY BABYYY!</p>
+        <h1>Will you be my Valentine?</h1>
         <div class="btn-container">
-            <button class="primary" onclick="nextScreen(2)">YES PLEASE</button>
-            <button id="noBtn" class="secondary" onmouseover="moveNo()">NO THANK YOU</button>
+            <button class="primary" onclick="startExperience()">YES PLEASE</button>
+            <button id="noBtn1" class="secondary" onmouseover="moveButton('noBtn1')">NO THANK YOU</button>
         </div>
     </div>
 
     <div id="screen2" class="screen">
-        <h2>Your Rose Bouquet 💐</h2>
-        <div style="font-size: 5rem; margin: 15px 0;">💐</div>
+        <h2>Your Bouquet, Sairieza 💙</h2>
+        <img src="https://raw.githubusercontent.com/apamlutfy/Sairieza/main/jaja%20Bouquet.jpg" class="banquet-photo" alt="Bouquet">
         <p>"Every moment with you is special."</p>
-        <button class="primary" onclick="nextScreen(3)">See Your Gifts</button>
+        <button class="primary" onclick="nextScreen(3)">Next Surprise</button>
     </div>
 
     <div id="screen3" class="screen">
         <h3>I made these just for you...</h3>
-        <p>Tap a card to open your surprise ✨</p>
         <div class="grid">
             <div class="card" onclick="showPhoto('https://raw.githubusercontent.com/apamlutfy/Sairieza/main/cutie%20jaja.jpg')">📷</div>
-            <div class="card" onclick="nextScreen(4)">✉️</div>
             <div class="card" onclick="alert('🎀 You are my favorite person, Sairieza!')">🎀</div>
-            <div class="card" onclick="alert('🍭 I owe you a sweet treat date!')">🍭</div>
+            <div class="card" onclick="alert('🍫 Sweet treats for a sweet girl!')">🍫</div>
+            <div class="card" onclick="nextScreen(4)">✉️</div>
         </div>
     </div>
 
     <div id="screen4" class="screen">
-        <h3>Words from my heart ❤️</h3>
+        <h3>Words from my heart 💙</h3>
         <div class="letter">
-            "I don't say this enough, but you mean more to me than I could ever explain. 
-            Being with you feels like home, even when we are far apart. 
-            Thank you for being you."
+             "Sairieza, I don't say this enough, but you mean the world to me. 
+             Being with you feels right. You're my favorite person, and I want to keep it that way for a long time"
         </div>
-        <button class="primary" style="margin-top:15px" onclick="nextScreen(5)">One last surprise...</button>
+        <button class="primary" onclick="nextScreen(5)">One last thing...</button>
     </div>
 
     <div id="screen5" class="screen">
         <h3>One last surprise... 🔒</h3>
         <p>Only your name can open this.</p>
-        <input type="text" id="userName" placeholder="Enter your name">
+        <input type="text" id="userName" placeholder="Your name..." style="padding:10px; border-radius:10px; border:1px solid #ccc; width:80%; text-align:center;">
+        <br><br>
         <button class="primary" onclick="checkName()">UNLOCK</button>
     </div>
 
     <div id="screen6" class="screen">
-        <h1 style="font-size: 2.5rem;">Happy Valentine's Day! ✨</h1>
-        <div style="font-size: 5rem;">💖</div>
-        <p>I love you more than words can say, <b>Sairieza</b>.</p>
-        <button class="secondary" onclick="location.reload()">Back to start</button>
+        <h1 style="font-size: 2rem;"><b>Sairieza</b>...</h1>
+        <p style="font-size: 1.2rem;">Will you be my <b>girlfriend?</b> 💙</p>
+        <button class="primary" onclick="celebrate()">YES! 💙</button>
+        <button id="noBtn2" class="secondary" onmouseover="moveButton('noBtn2')">NO</button>
+    </div>
+
+    <div id="screen7" class="screen">
+        <h1>Yay! 💙🥰</h1>
+        <p>I am the luckiest guy in the world!</p>
+        <div style="font-size: 5rem;">💙</div>
+        <p>I love you, <b>Sairieza</b> </p>
+        <button class="primary" onclick="nextScreen(8)" style="background: var(--dark-blue);">Read my special message ✉️</button>
+    </div>
+
+    <div id="screen8" class="screen">
+        <h3>To my dearest <b>Sairieza</b>... 💙</h3>
+        <div class="letter" style="max-height: 250px; overflow-y: auto;">
+            Hey Nur Sairieza… I’ve been wanting to tell you something for a while 🫣🫣<br><br>
+            Being with you just feels different 👀 you make my days softer, happier, and somehow lighter without even trying 🥰 when something funny happens, you’re the first person I want to telllll, when something bad happens, you’re the only person I want next to meeee 🫂 You’ve slowly become my comfort, my safe place, and my favorite person 💙💙💙<br><br>
+            I really loveee and likee youu💙💙... like, a lot more than I expected. I like your smile, your eye, your random moods, your everything... being with you just makes me feel… home <br><br>
+            So I just want to be honest with you 🫣 <br>
+            I don’t want anyone else I want you jaja 🫶🏻<br>
+            Will you be my girlfriend? 💙<br>
+        </div>
+        <button class="secondary" onclick="nextScreen(7)">Go Back</button>
     </div>
 
     <script>
-        function nextScreen(screenNum) {
-            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-            document.getElementById('screen' + screenNum).classList.add('active');
+        const music = document.getElementById('bgMusic');
+
+        function startExperience() {
+            music.play();
+            nextScreen(2);
         }
 
-        function moveNo() {
-            const btn = document.getElementById('noBtn');
-            // Randomly move button within safe margins
-            const x = Math.random() * (window.innerWidth - 150);
-            const y = Math.random() * (window.innerHeight - 100);
-            btn.style.position = 'fixed'; // Fixed so it can move anywhere
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+        function nextScreen(num) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById('screen' + num).classList.add('active');
         }
 
         function showPhoto(url) {
-            const overlay = document.getElementById('photoOverlay');
-            const img = document.getElementById('popupImg');
-            img.src = url;
-            overlay.style.display = 'flex';
+            document.getElementById('popupImg').src = url;
+            document.getElementById('photoOverlay').style.display = 'flex';
         }
 
         function checkName() {
             const name = document.getElementById('userName').value.toLowerCase().trim();
-            // This checks for the names you specified
             if (name === "sairieza" || name === "jaja" || name === "zaza") {
                 nextScreen(6);
             } else {
-                alert("That's not the right name! Try again, my love ❤️");
+                alert("Only my love can unlock this! 💙");
             }
+        }
+
+        function moveButton(id) {
+            const btn = document.getElementById(id);
+            btn.style.position = 'fixed';
+            btn.style.left = Math.random() * 80 + 'vw';
+            btn.style.top = Math.random() * 80 + 'vh';
+        }
+
+        function celebrate() {
+            nextScreen(7);
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '💙';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '100vh';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }, 200);
         }
     </script>
 </body>
